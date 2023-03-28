@@ -88,7 +88,7 @@ namespace task_3
             {
                 Console.Clear();
 
-                Console.WriteLine("1 - Добавить студента | 2 - Добавить оценки | 3 - Показать оценки | 4 - Показать студента | 0 - Выход");
+                Console.WriteLine("1 - Добавить студента | 2 - Показать студента | 0 - Выход");
                 Console.Write(" > ");
                 count = Int32.Parse(Console.ReadLine());
 
@@ -165,13 +165,36 @@ namespace task_3
                                     break;
                             }
                         }
+                        break;
+                    case 2:
+                        if (student.Length == 0)
+                        {
+                            Console.WriteLine(" Список студентов пуст");
+                            Console.ReadLine();
+                            break;
+                        }
 
+                        while (true)
+                        {
+                            Console.Write(" Введите номер студента: ");
+                            int index = Int32.Parse(Console.ReadLine());
+                            index--;
+
+                            if (index >= 0 && index < student.Length)
+                            {
+                                student[index].Print();
+                                Console.ReadLine();
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine(" Не верный номер студента");
+                            }
+                        }
                         break;
                     default:
                         break;
                 }
-
-                student[0].Print();
             }
 
             
