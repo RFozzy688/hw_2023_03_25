@@ -13,34 +13,59 @@ namespace task_3
 {
     public class Student
     {
-        string FirstName { get; set; }
-        string LastName { get; set; }
-        string Group { get; set; }
-        int Age { get; set; }
-
         int[] _progRank;
         int[] _adminRank;
         int[] _designRank;
-        public Student()
-        {
-            _progRank = new int[0];
-        }  
+
         void AddRank(ref int[] arr, int rank)
         {
             Array.Resize(ref arr, arr.Length + 1);
             arr[arr.Length - 1] = rank;
         }
-        public void AddRangProg(int rang)
+        void PrintArray(int[] arr)
         {
-            AddRank(ref _progRank, rang);
+            foreach (var item in arr)
+            {
+                Console.Write(" {0} ", item);
+            }
         }
-        public void AddRangAdmin(int rang)
+        float AverageMark(int[] arr)
         {
-            AddRank(ref _adminRank, rang);
+            return arr.Sum() / (float)arr.Length;
         }
-        public void AddRangDesign(int rang)
+
+        public Student()
         {
-            AddRank(ref _designRank, rang);
+            _progRank = new int[0];
+            _adminRank = new int[0];
+            _designRank = new int[0];
+        }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Group { get; set; }
+        public int Age { get; set; }
+        public void AddRangProg(int rang) { AddRank(ref _progRank, rang); }
+        public void AddRangAdmin(int rang) { AddRank(ref _adminRank, rang); }
+        public void AddRangDesign(int rang) { AddRank(ref _designRank, rang);}
+        public void Print()
+        {
+            Console.Write($" {FirstName} {LastName}\n");
+            Console.WriteLine($" Группа: {Group}");
+            Console.WriteLine($" Возраст: {Age}");
+
+            Console.WriteLine("\n Успеваемость:\n");
+
+            Console.Write(" Программирование: ");
+            PrintArray(_progRank);
+            Console.WriteLine("\n Средни бал: {0:f1}\n", AverageMark(_progRank));
+
+            Console.Write(" Администрирование: ");
+            PrintArray(_adminRank);
+            Console.WriteLine("\n Средни бал: {0:f1}\n", AverageMark(_adminRank));
+
+            Console.Write(" Дизайн: ");
+            PrintArray(_designRank);
+            Console.WriteLine("\n Средни бал: {0:f1}\n", AverageMark(_designRank));
         }
     }
     class Program
@@ -49,11 +74,24 @@ namespace task_3
         {
             Student student = new Student();
 
-            student.AddRangProg(10);
+            student.FirstName = "Vasya";
+            student.LastName = "Pupkin";
+            student.Group = "SPY 221";
+            student.Age = 30;
+
+            student.AddRangProg(11);
             student.AddRangProg(9);
             student.AddRangProg(12);
 
-            
+            student.AddRangAdmin(10);
+            student.AddRangAdmin(9);
+            student.AddRangAdmin(12);
+
+            student.AddRangDesign(10);
+            student.AddRangDesign(9);
+            student.AddRangDesign(12);
+
+            student.Print();
         }
     }
 }
