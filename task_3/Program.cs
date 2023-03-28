@@ -55,43 +55,141 @@ namespace task_3
 
             Console.WriteLine("\n Успеваемость:\n");
 
-            Console.Write(" Программирование: ");
-            PrintArray(_progRank);
-            Console.WriteLine("\n Средни бал: {0:f1}\n", AverageMark(_progRank));
+            if (_progRank.Length != 0)
+            {
+                Console.Write(" Программирование: ");
+                PrintArray(_progRank);
+                Console.WriteLine("\n Средни бал: {0:f1}\n", AverageMark(_progRank));
+            }
 
-            Console.Write(" Администрирование: ");
-            PrintArray(_adminRank);
-            Console.WriteLine("\n Средни бал: {0:f1}\n", AverageMark(_adminRank));
+            if (_adminRank.Length != 0)
+            {
+                Console.Write(" Администрирование: ");
+                PrintArray(_adminRank);
+                Console.WriteLine("\n Средни бал: {0:f1}\n", AverageMark(_adminRank));
+            }
 
-            Console.Write(" Дизайн: ");
-            PrintArray(_designRank);
-            Console.WriteLine("\n Средни бал: {0:f1}\n", AverageMark(_designRank));
+            if (_designRank.Length != 0)
+            {
+                Console.Write(" Дизайн: ");
+                PrintArray(_designRank);
+                Console.WriteLine("\n Средни бал: {0:f1}\n", AverageMark(_designRank));
+            }
         }
     }
     class Program
     {
         static void Main(string[] args)
         {
-            Student student = new Student();
+            Student[] student = new Student[0];
+            int count;
 
-            student.FirstName = "Vasya";
-            student.LastName = "Pupkin";
-            student.Group = "SPY 221";
-            student.Age = 30;
+            while (true)
+            {
+                Console.Clear();
 
-            student.AddRangProg(11);
-            student.AddRangProg(9);
-            student.AddRangProg(12);
+                Console.WriteLine("1 - Добавить студента | 2 - Добавить оценки | 3 - Показать оценки | 4 - Показать студента | 0 - Выход");
+                Console.Write(" > ");
+                count = Int32.Parse(Console.ReadLine());
 
-            student.AddRangAdmin(10);
-            student.AddRangAdmin(9);
-            student.AddRangAdmin(12);
+                if (count == 0)
+                {
+                    break;
+                }
 
-            student.AddRangDesign(10);
-            student.AddRangDesign(9);
-            student.AddRangDesign(12);
+                switch (count)
+                {
+                    case 1:
+                        Array.Resize(ref student, student.Length + 1);
+                        student[student.Length - 1] = new Student();
+                        Console.Write("\n Имя: ");
+                        student[student.Length - 1].FirstName = Console.ReadLine();
+                        Console.Write(" Фамилия: ");
+                        student[student.Length - 1].LastName = Console.ReadLine();
+                        Console.Write(" Группа: ");
+                        student[student.Length - 1].Group = Console.ReadLine();
+                        Console.Write(" Возраст: ");
+                        student[student.Length - 1].Age = Int32.Parse(Console.ReadLine());
 
-            student.Print();
+                        while (true)
+                        {
+                            Console.WriteLine("\n Добавить оценки: ");
+                            Console.WriteLine("1 - Программирование | 2 - Администрирование | 3 - Дизайн | 0 - Выход");
+                            Console.Write(" > ");
+                            count = Int32.Parse(Console.ReadLine());
+
+                            if (count == 0)
+                            {
+                                break;
+                            }
+
+                            switch (count)
+                            {
+                                case 1:
+                                    while (true)
+                                    {
+                                        int rang = Int32.Parse(Console.ReadLine());
+                                        student[student.Length - 1].AddRangProg(rang);
+
+                                        if (!ExitLoop())
+                                        {
+                                            break;
+                                        }
+                                    }
+                                    break;
+                                case 2:
+                                    while (true)
+                                    {
+                                        int rang = Int32.Parse(Console.ReadLine());
+                                        student[student.Length - 1].AddRangAdmin(rang);
+
+                                        if (!ExitLoop())
+                                        {
+                                            break;
+                                        }
+                                    }
+                                    break;
+                                case 3:
+                                    while (true)
+                                    {
+                                        int rang = Int32.Parse(Console.ReadLine());
+                                        student[student.Length - 1].AddRangDesign(rang);
+
+                                        if (!ExitLoop())
+                                        {
+                                            break;
+                                        }
+                                    }
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+
+                        break;
+                    default:
+                        break;
+                }
+
+                student[0].Print();
+            }
+
+            
+        }
+
+        static bool ExitLoop()
+        {
+            Console.WriteLine("Продолжить? (y/n): ");
+            char ch = Char.Parse(Console.ReadLine());
+
+            if (ch == 'y')
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
