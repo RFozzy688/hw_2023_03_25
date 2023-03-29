@@ -89,6 +89,15 @@ namespace task_5
         }
         public override string ToString()
         {
+            if (_numerator == 0)
+            {
+                return "0";
+            }
+            else if (_denominator == 1)
+            {
+                return $"{_numerator}";
+            }
+
             return $"{_numerator}/{_denominator}";
         }
         public static Fraction operator +(Fraction d1, Fraction d2)
@@ -227,14 +236,71 @@ namespace task_5
     {
         static void Main(string[] args)
         {
+            Fraction result = null;
+            Fraction d1 = new Fraction(3, 4);
+            Fraction d2 = new Fraction(5, 6);
 
-            Fraction d13 = new Fraction(5, 2);
-            Fraction d3 = -2.2 + d13/* + 1.5*/;
-            Console.WriteLine(d3);
+            result = d1 + d2;
+            Console.WriteLine($"{d1} + {d2} = {result}\n");
 
-            Fraction d1 = new Fraction(4, 7);
-            d3 = 5 * d1;
-            Console.WriteLine(d3);
+            result = d2 - d1;
+            Console.WriteLine($"{d2} - {d1} = {result}\n");
+
+            result = d1 * d2;
+            Console.WriteLine($"{d1} * {d2} = {result}\n");
+
+            result = d1 / d2;
+            Console.WriteLine($"{d1} : {d2} = {result}\n");
+
+            if (d1 != d2)
+            {
+                Console.WriteLine($"{d1} != {d2}\n");
+            }
+            else
+            {
+                Console.WriteLine($"{d1} == {d2}\n");
+            }
+
+            if (d1 > d2)
+            {
+                Console.WriteLine($"{d1} > {d2}\n");
+            }
+            else
+            {
+                Console.WriteLine($"{ d1} < { d2}\n");
+            }
+
+            Fraction d3 = new Fraction(7, 4);
+
+            if (d1)
+            {
+                Console.WriteLine($"{d1} правильная дробь\n");
+            }
+            else
+            {
+                Console.WriteLine($"{d1} не правильная дробь\n");
+            }
+
+            if (d3)
+            {
+                Console.WriteLine($"{d3} правильная дробь\n");
+            }
+            else
+            {
+                Console.WriteLine($"{d3} не правильная дробь\n");
+            }
+
+            result = d1 + 3;
+            Console.WriteLine($"{d1} + 3 = {result}\n");
+
+            result = 5 + d2;
+            Console.WriteLine($"5 + {d2} = {result}\n");
+
+            result = d1 * 3;
+            Console.WriteLine($"{d1} * 3 = {result}\n");
+
+            result = 5 * d2;
+            Console.WriteLine($"5 * {d2} = {result}\n");
         }
     }
 }
