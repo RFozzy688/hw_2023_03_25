@@ -41,6 +41,31 @@ namespace task_5
 
             return obj;
         }
+        Fraction ToFraction(double number)
+        {
+            string str = number.ToString();
+            string[] arrStr = str.Split(',');
+
+            if (arrStr.Length == 2)
+            {
+                int countDigit = arrStr[1].Length;
+
+                _numerator = (int)(number * countDigit * 10);
+                _denominator = countDigit * 10;
+            }
+            else
+            {
+                _numerator = (int)number;
+                _denominator = 1;
+            }
+
+            return this;
+        }
+        public Fraction()
+        {
+            _numerator = 0;
+            _denominator = 1;
+        }
         public Fraction(int numerator, int denominator)
         {
             _numerator = numerator;
@@ -126,6 +151,14 @@ namespace task_5
         {
             return d1 == d2 ? false : true;
         }
+        public override bool Equals(object obj)
+        {
+            return this.ToString() == obj.ToString();
+        }
+        public override int GetHashCode()
+        {
+            return this.ToString().GetHashCode();
+        }
         public static bool operator >(Fraction d1, Fraction d2)
         {
             d1 = d1.FractionReduction(d1);
@@ -156,66 +189,37 @@ namespace task_5
         {
             return d._numerator > d._denominator ? true : false;
         }
+        public static Fraction operator +(Fraction d, double num)
+        {
+            Fraction temp = new Fraction();
+            temp.ToFraction(num);
+
+            return d + temp;
+        }
+        public static Fraction operator +(double num, Fraction d)
+        {
+            return d + num;
+        }
+        public static Fraction operator -(Fraction d, double num)
+        {
+            Fraction temp = new Fraction();
+            temp.ToFraction(num);
+
+            return d - temp;
+        }
+        public static Fraction operator -(double num, Fraction d)
+        {
+            return d - num;
+        }
     }
     class Program
     {
         static void Main(string[] args)
         {
-            Fraction d1 = new Fraction(10, 30);
-            Fraction d2 = new Fraction(5, 6);
-            Fraction d3 = d1 + d2;
-            Fraction d4 = d2 - d1;
-            Fraction d5 = d2 * d1;
-            Fraction d6 = d2 / d1;
+
+            Fraction d13 = new Fraction(5, 2);
+            Fraction d3 = -2.2 + d13/* + 1.5*/;
             Console.WriteLine(d3);
-            Console.WriteLine(d4);
-            Console.WriteLine(d5);
-            Console.WriteLine(d6);
-
-            Fraction d7 = new Fraction(3, 2);
-            Fraction d8 = new Fraction(6, 4);
-
-            if (d7 != d8)
-            { 
-                Console.WriteLine("не равны");
-            }
-            else
-            {
-                Console.WriteLine("равны");
-            }
-
-            Fraction d9 = new Fraction(3, 2);
-            Fraction d10 = new Fraction(1, 2);
-
-            if (d9 < d10)
-            {
-                Console.WriteLine("<");
-            }
-            else
-            {
-                Console.WriteLine(">");
-            }
-
-            Fraction d11 = new Fraction(1, 2);
-            Fraction d12 = new Fraction(5, 2);
-
-            if (d11)
-            {
-                Console.WriteLine("правильная");
-            }
-            else
-            {
-                Console.WriteLine("не правильная");
-            }
-
-            if (d12)
-            {
-                Console.WriteLine("правильная");
-            }
-            else
-            {
-                Console.WriteLine("не правильная");
-            }
         }
     }
 }
