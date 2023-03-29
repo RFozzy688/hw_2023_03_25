@@ -112,13 +112,37 @@ namespace task_4
             return Perimeter = (a + b) * 2;
         }
     }
+    public class Trapeze : GeometricFigure
+    {
+        public int a { get; set; }
+        public int b { get; set; }
+        public int c { get; set; }
+        public int d { get; set; }
+        public double h { get; set; }
+        public Trapeze(string nameFigure, int a, int b, int c, int d, double h) : base(nameFigure)
+        {
+            this.a = a;
+            this.b = b;
+            this.c = c;
+            this.d = d;
+            this.h = h;
+        }
+        public override double SquareFigure()
+        {
+            return Square = 0.5 * (a + b) * h;
+        }
+        public override double PerimeterFigure()
+        {
+            return Perimeter = a + b + c + d;
+        }
+    }
     class Program
     {
         static void Main(string[] args)
         {
             GeometricFigure geometricFigure;
 
-            geometricFigure = new Parallelogram("Паралелограм", 7, 12, 4);
+            geometricFigure = new Trapeze("трапеция", 7, 4, 8, 10, 4);
             Console.WriteLine("название: {0}", geometricFigure.NameFigure);
             Console.WriteLine("периметр: {0}", geometricFigure.PerimeterFigure());
             Console.WriteLine("площадь: {0:0.00}", geometricFigure.SquareFigure());
