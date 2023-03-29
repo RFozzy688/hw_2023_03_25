@@ -126,6 +126,28 @@ namespace task_5
         {
             return d1 == d2 ? false : true;
         }
+        public static bool operator >(Fraction d1, Fraction d2)
+        {
+            d1 = d1.FractionReduction(d1);
+            d2 = d2.FractionReduction(d2);
+
+            int totalDenominator = d1._denominator * d2._denominator;
+            int numerator_D1 = d1._numerator * (totalDenominator / d1._denominator);
+            int numerator_D2 = d2._numerator * (totalDenominator / d2._denominator);
+
+            if (numerator_D1 > numerator_D2)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public static bool operator <(Fraction d1, Fraction d2)
+        {
+            return d1 > d2 ? false : true;
+        }
     }
     class Program
     {
@@ -152,6 +174,18 @@ namespace task_5
             else
             {
                 Console.WriteLine("равны");
+            }
+
+            Fraction d9 = new Fraction(3, 2);
+            Fraction d10 = new Fraction(1, 2);
+
+            if (d9 < d10)
+            {
+                Console.WriteLine("<");
+            }
+            else
+            {
+                Console.WriteLine(">");
             }
         }
     }
