@@ -72,16 +72,36 @@ namespace task_4
             return Perimeter = (a + b) * 2;
         }
     }
+    public class Rhombus : GeometricFigure
+    {
+        public int a { get; set; }
+        public double d1 { get; set; }
+        public double d2 { get; set; }
+        public Rhombus(string nameFigure, int a, double d1, double d2) : base(nameFigure)
+        {
+            this.a = a;
+            this.d1 = d1;
+            this.d2 = d2;
+        }
+        public override double SquareFigure()
+        {
+            return Square = 0.5 * d1 * d2;
+        }
+        public override double PerimeterFigure()
+        {
+            return Perimeter = a * 4;
+        }
+    }
     class Program
     {
         static void Main(string[] args)
         {
             GeometricFigure geometricFigure;
 
-            geometricFigure = new Rectangle("прямоугольник", 5, 15);
+            geometricFigure = new Rhombus("ромб", 5, 6, 8);
             Console.WriteLine("название: {0}", geometricFigure.NameFigure);
             Console.WriteLine("периметр: {0}", geometricFigure.PerimeterFigure());
-            Console.WriteLine("площадь: {0}", geometricFigure.SquareFigure());
+            Console.WriteLine("площадь: {0:0.00}", geometricFigure.SquareFigure());
             
         }
     }
