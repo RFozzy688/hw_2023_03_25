@@ -86,7 +86,24 @@ namespace task_5
 
             return temp.FractionReduction(temp);
         }
+        public static Fraction operator *(Fraction d1, Fraction d2)
+        {
+            int numerator = d1._numerator * d2._numerator;
+            int denominator = d1._denominator * d2._denominator;
 
+            Fraction result = new Fraction(numerator, denominator);
+
+            return result.FractionReduction(result);
+        }
+        public static Fraction operator /(Fraction d1, Fraction d2)
+        {
+            int numerator = d1._numerator * d2._denominator;
+            int denominator = d1._denominator * d2._numerator;
+
+            Fraction result = new Fraction(numerator, denominator);
+
+            return result.FractionReduction(result);
+        }
     }
     class Program
     {
@@ -96,8 +113,12 @@ namespace task_5
             Fraction d2 = new Fraction(5, 6);
             Fraction d3 = d1 + d2;
             Fraction d4 = d2 - d1;
+            Fraction d5 = d2 * d1;
+            Fraction d6 = d2 / d1;
             Console.WriteLine(d3);
             Console.WriteLine(d4);
+            Console.WriteLine(d5);
+            Console.WriteLine(d6);
         }
     }
 }
