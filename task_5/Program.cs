@@ -148,6 +148,14 @@ namespace task_5
         {
             return d1 > d2 ? false : true;
         }
+        public static bool operator true(Fraction d)
+        {
+            return d._numerator < d._denominator ? true : false;
+        }
+        public static bool operator false(Fraction d)
+        {
+            return d._numerator > d._denominator ? true : false;
+        }
     }
     class Program
     {
@@ -186,6 +194,27 @@ namespace task_5
             else
             {
                 Console.WriteLine(">");
+            }
+
+            Fraction d11 = new Fraction(1, 2);
+            Fraction d12 = new Fraction(5, 2);
+
+            if (d11)
+            {
+                Console.WriteLine("правильная");
+            }
+            else
+            {
+                Console.WriteLine("не правильная");
+            }
+
+            if (d12)
+            {
+                Console.WriteLine("правильная");
+            }
+            else
+            {
+                Console.WriteLine("не правильная");
             }
         }
     }
