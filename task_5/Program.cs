@@ -16,6 +16,31 @@ namespace task_5
     {
         int _numerator;
         int _denominator;
+        Fraction FractionReduction(Fraction obj)
+        {
+            int count = 2;
+
+            while (true)
+            {
+                if (obj._numerator % count == 0 && obj._denominator % count == 0)
+                {
+                    obj._numerator /= count;
+                    obj._denominator /= count;
+                    count = 2;
+                }
+                else
+                {
+                    count++;
+                }
+
+                if (count > obj._numerator || count > obj._denominator)
+                {
+                    break;
+                }
+            }
+
+            return obj;
+        }
         public Fraction(int numerator, int denominator)
         {
             _numerator = numerator;
@@ -47,7 +72,9 @@ namespace task_5
             int numerator = (totalDenominator / d1._denominator) * d1._numerator + 
                 (totalDenominator / d2._denominator) * d2._numerator;
 
-            return new Fraction(numerator, totalDenominator);
+            Fraction temp = new Fraction(numerator, totalDenominator);
+
+            return temp.FractionReduction(temp);
         }
         public static Fraction operator -(Fraction d1, Fraction d2)
         {
@@ -55,7 +82,9 @@ namespace task_5
             int numerator = (totalDenominator / d1._denominator) * d1._numerator -
                 (totalDenominator / d2._denominator) * d2._numerator;
 
-            return new Fraction(numerator, totalDenominator);
+            Fraction temp = new Fraction(numerator, totalDenominator);
+
+            return temp.FractionReduction(temp);
         }
 
     }
@@ -63,8 +92,8 @@ namespace task_5
     {
         static void Main(string[] args)
         {
-            Fraction d1 = new Fraction(1, 2);
-            Fraction d2 = new Fraction(3, 4);
+            Fraction d1 = new Fraction(10, 30);
+            Fraction d2 = new Fraction(5, 6);
             Fraction d3 = d1 + d2;
             Fraction d4 = d2 - d1;
             Console.WriteLine(d3);
