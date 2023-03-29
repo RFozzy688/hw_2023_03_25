@@ -54,15 +54,34 @@ namespace task_4
             return Perimeter;
         }
     }
-
+    public class Rectangle : GeometricFigure
+    {
+        public int a { get; set; }
+        public int b { get; set; }
+        public Rectangle(string nameFigure, int a, int b) : base(nameFigure)
+        {
+            this.a = a;
+            this.b = b;
+        }
+        public override double SquareFigure()
+        {
+            return Square = a * b;
+        }
+        public override double PerimeterFigure()
+        {
+            return Perimeter = (a + b) * 2;
+        }
+    }
     class Program
     {
         static void Main(string[] args)
         {
-            GeometricFigure geometricFigure = new Triangle("треугольник", 5, 5, 5);
+            GeometricFigure geometricFigure;
+
+            geometricFigure = new Rectangle("прямоугольник", 5, 15);
             Console.WriteLine("название: {0}", geometricFigure.NameFigure);
             Console.WriteLine("периметр: {0}", geometricFigure.PerimeterFigure());
-            Console.WriteLine("площадь: {0:0.00}", geometricFigure.SquareFigure());
+            Console.WriteLine("площадь: {0}", geometricFigure.SquareFigure());
             
         }
     }
