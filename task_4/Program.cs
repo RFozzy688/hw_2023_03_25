@@ -171,16 +171,40 @@ namespace task_4
             return Perimeter = 4 * (Math.PI * a * b + Math.Pow((a - b), 2)) / (a + b);
         }
     }
+    public class ComponentFigure
+    {
+        GeometricFigure[] _geometricFigures;
+        public GeometricFigure[] GetGeometricFigures { get { return _geometricFigures; } }
+        public ComponentFigure()
+        {
+            _geometricFigures = new GeometricFigure[0];
+        }
+        public void AddFigure(GeometricFigure figure)
+        {
+            Array.Resize(ref _geometricFigures, _geometricFigures.Length + 1);
+            _geometricFigures[_geometricFigures.Length - 1] = figure;
+            _geometricFigures[_geometricFigures.Length - 1] = figure;
+        }
+    }
     class Program
     {
         static void Main(string[] args)
         {
-            GeometricFigure geometricFigure;
+            ComponentFigure figure = new ComponentFigure();
+            Ellipse ellipse = new Ellipse("эллипс", 6, 4);
+            Circle circle = new Circle("круг", 10);
+            Rhombus rhombus = new Rhombus("ромб", 10, 10, 15);
+            Triangle triangle = new Triangle("треугольник", 5, 6, 7);
 
-            geometricFigure = new Ellipse("эллипс", 6, 4);
-            Console.WriteLine("название: {0}", geometricFigure.NameFigure);
-            Console.WriteLine("периметр: {0:0.00}", geometricFigure.PerimeterFigure());
-            Console.WriteLine("площадь: {0:0.00}", geometricFigure.SquareFigure());
+            figure.AddFigure(ellipse as GeometricFigure);
+            figure.AddFigure(circle as GeometricFigure);
+            figure.AddFigure(rhombus as GeometricFigure);
+            figure.AddFigure(triangle as GeometricFigure);
+
+            foreach(var item in figure.GetGeometricFigures)
+            {
+                Console.WriteLine($"фигура: {item.NameFigure}\nплощадь: {item.SquareFigure():0.00}\n");
+            }
             
         }
     }
