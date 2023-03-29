@@ -92,13 +92,33 @@ namespace task_4
             return Perimeter = a * 4;
         }
     }
+    public class Parallelogram : GeometricFigure
+    {
+        public int a { get; set; }
+        public int b { get; set; }
+        public double h { get; set; }
+        public Parallelogram(string nameFigure, int a, int b, double h) : base(nameFigure)
+        {
+            this.a = a;
+            this.b = b;
+            this.h = h;
+        }
+        public override double SquareFigure()
+        {
+            return Square = a * h;
+        }
+        public override double PerimeterFigure()
+        {
+            return Perimeter = (a + b) * 2;
+        }
+    }
     class Program
     {
         static void Main(string[] args)
         {
             GeometricFigure geometricFigure;
 
-            geometricFigure = new Rhombus("ромб", 5, 6, 8);
+            geometricFigure = new Parallelogram("Паралелограм", 7, 12, 4);
             Console.WriteLine("название: {0}", geometricFigure.NameFigure);
             Console.WriteLine("периметр: {0}", geometricFigure.PerimeterFigure());
             Console.WriteLine("площадь: {0:0.00}", geometricFigure.SquareFigure());
