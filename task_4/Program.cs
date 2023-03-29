@@ -136,15 +136,31 @@ namespace task_4
             return Perimeter = a + b + c + d;
         }
     }
+    public class Circle : GeometricFigure
+    {
+        public int r { get; set; }
+        public Circle(string nameFigure, int r) : base(nameFigure)
+        {
+            this.r = r;
+        }
+        public override double SquareFigure()
+        {
+            return Square = Math.PI * r * r;
+        }
+        public override double PerimeterFigure()
+        {
+            return Perimeter = 2 * Math.PI * r;
+        }
+    }
     class Program
     {
         static void Main(string[] args)
         {
             GeometricFigure geometricFigure;
 
-            geometricFigure = new Trapeze("трапеция", 7, 4, 8, 10, 4);
+            geometricFigure = new Circle("круг", 10);
             Console.WriteLine("название: {0}", geometricFigure.NameFigure);
-            Console.WriteLine("периметр: {0}", geometricFigure.PerimeterFigure());
+            Console.WriteLine("периметр: {0:0.00}", geometricFigure.PerimeterFigure());
             Console.WriteLine("площадь: {0:0.00}", geometricFigure.SquareFigure());
             
         }
