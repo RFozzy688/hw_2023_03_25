@@ -211,6 +211,17 @@ namespace task_5
         {
             return d - num;
         }
+        public static Fraction operator *(Fraction d, double num)
+        {
+            Fraction temp = new Fraction();
+            temp.ToFraction(num);
+
+            return d * temp;
+        }
+        public static Fraction operator *(double num, Fraction d)
+        {
+            return d * num;
+        }
     }
     class Program
     {
@@ -219,6 +230,10 @@ namespace task_5
 
             Fraction d13 = new Fraction(5, 2);
             Fraction d3 = -2.2 + d13/* + 1.5*/;
+            Console.WriteLine(d3);
+
+            Fraction d1 = new Fraction(4, 7);
+            d3 = 5 * d1;
             Console.WriteLine(d3);
         }
     }
