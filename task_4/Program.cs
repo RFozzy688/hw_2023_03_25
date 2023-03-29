@@ -139,6 +139,7 @@ namespace task_4
     public class Circle : GeometricFigure
     {
         public int r { get; set; }
+
         public Circle(string nameFigure, int r) : base(nameFigure)
         {
             this.r = r;
@@ -152,13 +153,31 @@ namespace task_4
             return Perimeter = 2 * Math.PI * r;
         }
     }
+    public class Ellipse : GeometricFigure
+    {
+        public int a { get; set; }
+        public int b { get; set; }
+        public Ellipse(string nameFigure, int a, int b) : base(nameFigure)
+        {
+            this.a = a;
+            this.b = b;
+        }
+        public override double SquareFigure()
+        {
+            return Square = Math.PI * a * b;
+        }
+        public override double PerimeterFigure()
+        {
+            return Perimeter = 4 * (Math.PI * a * b + Math.Pow((a - b), 2)) / (a + b);
+        }
+    }
     class Program
     {
         static void Main(string[] args)
         {
             GeometricFigure geometricFigure;
 
-            geometricFigure = new Circle("круг", 10);
+            geometricFigure = new Ellipse("эллипс", 6, 4);
             Console.WriteLine("название: {0}", geometricFigure.NameFigure);
             Console.WriteLine("периметр: {0:0.00}", geometricFigure.PerimeterFigure());
             Console.WriteLine("площадь: {0:0.00}", geometricFigure.SquareFigure());
